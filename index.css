@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: dodgerblue;
+}
+
+header {
+    text-align: center;
+    background: rgb(247, 5, 214);
+    border: 2px solid;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 92vh;
+    padding: 20px; 
+}
+
+.DeveloperContact {
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
+}
+.DisplayBox {
+    position: absolute;
+    bottom: 100px;
+   background-color: aqua;
+}
+.DisplayBox p{
+    height: 52px;
+    width: 200px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 8px;
+}
+.btn{
+    margin: 20px;
+    overflow: hidden; 
+   ;
+}
+.btn button{
+    width: 100px;
+    height: 100px;
+    border-radius:100% ;
+    border: 5px solid
+}
+p{
+    margin:0px 10px 0px 25px;
+}
+.btn button img{
+    height: 100%;
+    width: 100%;
+    object-fit:contain;
+    border-radius: 100%;
+}
+
