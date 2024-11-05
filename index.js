@@ -1,66 +1,46 @@
-let x=document.querySelectorAll(".btn");
-let a=document.getElementById("box1")
-a.innerText=x[0].getAttribute("id")
-function computerGeneratedChoice(){
+let userScore = 0;
+let computerScore = 0;
+const resultDisplay = document.getElementById("box1");
 
-const arr=["Stone","paper","Scissors"];
-let RandomNumber=Math.floor(Math.random()*3);
-return arr[RandomNumber];
-
+function computerGeneratedChoice() {
+    const choices = ["stone", "paper", "scissors"];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
 }
 
-const playGame=(userChoice)=>{
-const computerChoice=computerGeneratedChoice();
-
-
- if (userChoice=="stone"){
-    if (computerChoice==="Stone"){
-        a.innerText="Match is Draw";
-    }
-    else if(computerChoice==="paper"){
-        a.innerText="Computer Win the Game";
-    }
-    else if(computerChoice==="Scissors"){
-        a.innerText="You Win The Game!";
-    }
-    else{
-        a.innerText="DAnger!";
-    }
+function updateScoreBoard() {
+    document.querySelector(".win").innerText = `User: ${userScore}`;
+    document.querySelector(".loss").innerText = `Computer: ${computerScore}`;
 }
-else if (userChoice=="paper"){
-    if (computerChoice==="paper"){
-        a.innerText="Match is Draw";
-    }
-    else if(computerChoice==="Scissors"){
-        a.innerText="Computer Win the Game";
-    }
-    else if(computerChoice==="Stone"){
-        a.innerText="You Win The Game!";
-    }
-    else{
-        a.innerText="DAnger!";
-    }
-}
-else if (userChoice=="Scissors"){
-    if (computerChoice==="paper"){
-        a.innerText="You win the Game!";
-    }
-    else if(computerChoice==="Scissors"){
-        a.innerText="Game is Draw!";
-    }
-    else if(computerChoice==="Stone"){
-        a.innerText="Computer Wins The game!";
-    }
-    else{
-        a.innerText="DAnger!";
+
+function determineWinner(userChoice, computerChoice) {
+    if (userChoice === computerChoice) {
+        return "It's a Draw!";
+    } else if (
+        (userChoice === "stone" && computerChoice === "scissors") ||
+        (userChoice === "paper" && computerChoice === "stone") ||
+        (userChoice === "scissors" && computerChoice === "paper")
+    ) {
+        userScore++;
+        return "You Win!";
+    } else {
+        computerScore++;
+        return "Computer Wins!";
     }
 }
 
+function playGame(userChoice) {
+    const computerChoice = computerGeneratedChoice();
+    const resultMessage = determineWinner(userChoice, computerChoice);
+    resultDisplay.innerText = `You chose ${userChoice}, computer chose ${computerChoice}. ${resultMessage}`;
+    updateScoreBoard();
 }
 
-for (let i=0;i<x.length;i++){
-    x[i].addEventListener("click",()=>{
-        const userChoice=x[i].getAttribute("id");
+document.querySelectorAll(".btn").forEach(button => {
+    button.addEventListener("click", () => {
+        const userChoice = button.id.toLowerCase();
         playGame(userChoice);
-    })
-}
+    });
+});
+
+updateScoreBoard();
